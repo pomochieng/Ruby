@@ -18,7 +18,7 @@ class Employee
 
   def print_pay_stub
     puts "Name: #{@name}"
-    pay_for_period = (@salary / 365) * 14#Calculate a 4-day portion of the employee
+    pay_for_period = (@salary / 365.0) * 14#Calculate a 14-day portion of the employee
     puts "Pay This period: $#{pay_for_period}"#print the amount paid
   end
 
@@ -30,6 +30,11 @@ amy.name = "Amy Blake"
 amy.salary = 50000
 
 amy.print_pay_stub
+
+employee = Employee.new
+employee.name = "Jane Doe"
+employee.salary = 50000
+employee.print_pay_stub
 
 
 
