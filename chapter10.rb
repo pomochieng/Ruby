@@ -79,6 +79,38 @@ def >(other)
 end
 
 
+class WordSplitter
+  include Enumerable
+  attr_accessor :string     #Holds the string we want to split
+
+  def each    #The Enumerable methods will be calling this.
+    string.split(" ").each do |word|    #Split the string into word(split it on space characters) and process each word.
+      yield word     #Yield the current word to the block that was passed to "each".
+    end
+  end
+end
+
+
+splitter = WordSplitter.new
+splitter.string = "one two three four"     #Here's the string we want to split.
+
+
+p splitter.find_all { |word| word.include?("d") }    #Find all items for which the block returns true.
+p splitter.reject { |word| word.include?("d") }   #Reject items for which the block returns true
+p splitter.map { |word| word.reverse }
+
+
+
+splitter.each do |word|     #The block wil receive each word as a parameter.
+  puts word       #Print the current word.
+end
+
+
+
+p splitter.any? { |word| word.include?("e") }     # The method returns true if the block returns true for any item.
+p splitter.count    #Count of all items
+p splitter.first    #First item
+p splitter.sort     #An array with all the items sorted
 
 
 
